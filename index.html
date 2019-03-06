@@ -1,0 +1,527 @@
+<!-- Cabecera HTML -->                 
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Info META -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta Http-Equiv="Cache-Control" Content="no-cache">
+<meta Http-Equiv="Pragma" Content="no-cache">
+<meta Http-Equiv="Expires" Content="0">
+<meta Http-Equiv="Pragma-directive: no-cache">
+<meta Http-Equiv="Cache-directive: no-cache">
+    <!-- Título página -->
+    <title>Mapemio
+    </title>
+    
+<script type="text/javascript" charset="utf-8">
+$("#loading").ajaxStart(function(){
+    $(this).show();
+}).ajaxStop(function(){
+   $(this).hide();
+});
+</script>    
+    
+    
+    <!-- Librerías JavaScript usadas -->
+<script src="js/botones.js"></script>   
+    <!-- Acciones botones -->
+<script src="js/external/jquery-1.4.2.min.js"></script>   
+    <!-- jQuery -->
+<script src="js/external/jquery.ui.core.min.js"></script>   
+    <!-- jQuery -->
+<script src="js/external/jquery.ui.widget.min.js"></script>   
+    <!-- jQuery -->
+<script src="js/external/jquery.ui.mouse.min.js"></script>   
+    <!-- jQuery -->
+<script src="js/external/jquery.ui.draggable.min.js"></script>   
+    <!-- jQuery -->
+<script src="js/external/jquery.ui.touch-punch.min.js"></script>    
+    <!-- jQuery -->
+<script src="js/external/jquery.event.wheel-1.0.js"></script>     
+    <!-- jQuery -->
+<script src="js/external/jquery-ui.js"></script>   
+    <!-- jQuery -->
+    <!-- <script src="js/menuDesplegable.js"></script>   BORRAR...? -->
+<script src="js/dibujaBloques.js"></script>   
+    <!-- Módulo Dibujante -->
+<script src="js/zoomOperations.js"></script>   
+    <!-- Control de las operaciones de Zoom -->
+<script src="ajaximageUpload/scripts/jquery.form.js"></script>  
+    <!-- jQuery -->    
+<script src="js/external/md5.js"></script>   
+    <!-- Funciones para la encriptación en formato MD5 -->     
+<script src="js/external/upclick-min.js"></script>  
+    <!-- subida de archivos con un solo click (boton subir imagen --> 
+<script src="js/inserciones.js"></script>  
+    <!-- Funciones para inserción de imágenes y textos -->    
+<script src="js/configuraDrag.js"></script>  
+    <!-- Configuración inicial del Drag -->    
+<script src="js/teclado.js"></script>  
+    <!-- Configuración del teclado -->    
+<script src="js/raton.js"></script>  
+    <!-- configuración del ratón -->    
+<script src="js/editorhtml.js"></script>  
+    <!-- Operaciones de edicion y salvado -->   
+    
+<script src="js/objectsLayer.js"></script>     
+
+<script src="js/panel.js"></script>     
+    
+    <!-- <script language="JavaScript" src="js/slider.js"></script>  BORRAR...? --> 
+<script src="js/vars.js"></script>    
+    <!-- Variable declaration --> 
+<script src="js/main.js"></script>    
+
+<script language="JavaScript" src="js/slider.js"></script>
+    <!-- Main Functions --> 
+    <!-- Definición estilos CSS --> 
+    <link href="Fonts/fonts_firefox.css" rel="stylesheet" type="text/css"/>
+    <link href="css/computer.css" rel="stylesheet" type="text/css"/>
+    <link href="css/bloques.css" rel="stylesheet" type="text/css"/>
+    <link href="css/menus.css" rel="stylesheet" type="text/css"/>
+    <link href="css/menuDesplegable.css" rel="stylesheet" type="text/css"/>
+    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>   
+<script type="text/javascript">
+// Fuerzo poder hacer cross-domain access:
+jQuery.support.cors = true; // force cross-site scripting (as of jQuery 1.5)
+//var URL1="../maps/Astutis/"; 
+</script>    
+  </head>
+  <!-- <body onorientationchange="orient();">   Esto es solo para IPhone-Ipad! -->
+  <body onLoad="if ('Navigator' == navigator.appName) document.forms[0].reset();">  
+  
+  
+  <div id="loading" style="z-index:99999">
+   <p><b>Loading...</b><br/><img src="img/loadingAnimation.gif"/> </p>
+</div>
+
+
+
+
+
+
+
+
+
+<div id="sliderr" style="overflow:visible;     /* Si elimino esto, veo cómo sobresalen los divs (interesante para testeo de creación dinámica de divs  */
+    	width:46px;
+    	height:150px;
+		bottom: 115px;
+		right:0px;
+    	clear:all;
+
+	 	position: absolute;
+
+	z-index:30000;
+	visibility:visible;">
+
+<form method="get" name="demoForm">
+<!--
+<input name="sliderValue" id="sliderValue6v" type="Text" size="3" onchange="A_SLIDERS[0].f_setValue(this.value)">
+-->
+
+<script language="JavaScript">
+	var A_TPL6v = {
+		'b_vertical' : true,
+		'b_watch': true,
+		's_form': 'demoForm',
+		'n_controlWidth': 17,
+		'n_controlHeight': 149,
+		'n_sliderWidth': 17,
+		'n_sliderHeight': 9,
+		'n_pathLeft' : 1,
+		'n_pathTop' : 2,
+		'n_pathLength' : 136,
+		's_imgControl': 'img/sldr5v_bg.gif',
+		's_imgSlider': 'img/sldr5v_sl.gif',
+		'n_zIndex': 1
+	}
+	var A_INIT6v = {
+		's_form' : 0,
+		's_name': 'sliderValue6v', 
+		'n_minValue' : 1,
+		'n_maxValue' : 18,
+		'n_value' : 10,
+		'n_step' : 1
+	}
+
+	new slider(A_INIT6v, A_TPL6v);
+</script>
+</form>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Forzamos no-cache en JS también por si acaso! -->  
+    <div id="control_interrupciones">  
+    </div>          
+    <div id="viewport">         
+      <!--
+          // Evita que el la mano se quede cerrada si salimos de la página con el ratón y volvemos a entrar
+          document.getElementById("draggable").setAttribute("onmouseout", "alert(1)");  
+          $( "#draggable" ).css( "cursor", 'url(grab.cur),none' );  
+        -->          
+      <div id="draggable" class="mapa" style="width:1px; height:1px; cursor:default; top:0px; left:0px;" onMouseOut="$( '#draggable' ).css( 'cursor', 'default' );"  onMouseOver="if(botonMenuLocked==false) {if($(document).find('#panel').css('left')=='0px'); $('#panel').animate({'left': '-400px'}, 'fast');}" onDblClick="if(zoom>0) zoomIn();">        
+        <!-- el onMouseOut evita que el la mano se quede cerrada si salimos de la página con el ratón y volvemos a entrar // OJO, habrá que rectificarlo para cuando el viewport no sea a pantalla completa!! -->    
+        <div id="operaciones" style="z-index:17000; top:0px; left:0px; position:absolute;" >   asdsa      
+        </div>
+
+        <div id="objectsLayer" style="z-index:17000; top:0px; left:0px; position:absolute;" >
+        	<div class="imgSelect" style="position:absolute; left:7168px; top:4096px; width:1280px; height:1154px;"></div>  
+         	<div class="imgSelect" style="position:absolute; left:8704px; top:4096px; width:960px; height:720px;"></div>        
+			<div class="imgSelect" style="position:absolute; left:8704px; top:4864px; width:960px; height:720px;"></div>            
+        </div> 
+    
+        <!-- Donde el usuario inserta sus parcelas   -->      
+        <!-- onMouseOver oculta el panel si salimos de èste -->        
+      </div>  
+      <div id="toolbar">  
+        <!-- class="colorToolbar" -->    
+        <div  style="position:absolute; top:0px; left:5px">      
+          <img src="logos/Mapemio3.png" />    
+        </div>  
+      </div>  
+ 
+      <div id="down_toolbar" align="center" style=" alignment-adjust:central; text-align:center; ">       
+        
+      </div>     
+      <div id="down_toolbar_fbbutton" align="center" style=" alignment-adjust:central; text-align:center;">  
+      </div>     
+      <div id="panel_container" style="">  
+        <div id="panel" style="position:absolute;">
+                          	<div id="logoMapemio">
+      				<img src="logos/MapemioPowered2.png" />
+      			</div>        
+          <div id="panel_icons">        
+            <div id="iconos_panel" style="position:absolute; top:50px;">        
+              <!-- <div id="panel_titulo">PANEL</div> -->          
+              <table>            
+                <tr>            <td>              
+                    <a href="#">
+                      <img src="icons/document-open-folder.png"  onClick="botonMapList()" /></a>            </td>            <td>              
+                    <a href="#">
+                      <img src="icons/document-new-5.png"  onClick="botonMapGen();"/></a>            </td>            <td>              
+                    <img src="icons/run-build-configure.png" id="uploadImage" />                           
+<script type="text/javascript">
+            // script para upload con un solo click!
+            
+               var uploader = document.getElementById('uploadImage');
+            
+               upclick(
+                 {   
+                  element: uploader,
+            //      action: 'scripts/ajaxupload.php', 
+            
+                  action: 'ajaximage2.php?mapurl=../'+URL1+'&&zoom='+zoom, 
+            //      data: "mapurl=../'+URL1+'&&zoom='+zoom",
+                  onstart:
+                    function(filename)
+            
+                    {
+            		pulsaAbrirFoto();
+            	    $("#cuadrito1").append('<img src="loader.gif" alt="Uploading...."/>');
+            //          alert('Start upload: '+filename);
+            
+                    },
+                  oncomplete:
+                    function(response_data) 
+                    {
+                      alert("LA URL1 es: "+URL1);
+            
+            //		$("#imageform").ajaxForm({ target: '#cuadrito1'}).submit();
+            
+            
+            	        $("#cuadrito1").append(response_data);
+            
+                      alert(response_data);
+                    }
+                 });
+               </script>             </td>            <td>              
+                    <a href="#"><img src="icons/document-properties.png" onClick="showObjectsInfoPanel();"/></a>            </td>            <td>              
+                    <a href="#"><img src="icons/system-search-3.png" onClick="showEditPanel();"/></a>            </td>            <td>              ------------             </td>            <td>              
+                    <img src="icons/help.png"/>            </td>            
+                </tr>          
+              </table>        
+            </div>      
+          </div>         
+          <div id="mapListContainer" style="height:80%; width:100%; left:50%; top:50%; margin-left:20px; margin-top:100px;">        
+            <div  style="z-index:12000; width:400px; color:black; font-size:12px; position:absolute; bottom:2px; text-align: center; font-family:Arial, Helvetica, sans-serif;" >          sergioguillen.com   ©Sergio Guillén 2011-2019         
+            </div>           
+            <!-- Botón de control del panel -->         
+            <div id="panelIconContainer" style="clear:all; overflow:hidden; position: absolute; left:383px; top:38px; z-index:1000;">
+            
+
+              <img id="leftRightIcon" class="button" src="icons/1361402303_LeftArrow.png" onClick="botonMenu()"/>         
+         <!--     <input type="submit" name="botonMenu" id="botonMenu" value="Menu" onClick="botonMenu()" onMouseOver="if($(document).find('#panel_container').css('left')=='-400px') $('#panel_container').animate({'left': '0px'}, 'fast');">          
+           <!--   <input type="submit" name="botonLockPanel" id="botonLockPanel" value="Lock" onClick="botonLockPanel();"> -->
+        
+            </div>                 
+            <!-- onMouseOver="if($(document).find('#panel').css('left')=='-400px') $('#panel').animate({'left': '0px'}, 'fast');" -->  
+            <div id="objectsInfoPanel" style="height:100%; width:100%; visibility:hidden;  z-index:2000;  position:absolute; top:75px;  overflow:hidden"> 
+            <b>OBJECTS INFO</b> 
+            <br>
+            <br>
+            MAP NAME: <div id="infoMapName"><script>document.write(mapName)</script></div>
+            <br>
+            URL1: <div id="infoMapURL1"><script>document.write(URL1)</script></div>           
+            <br>
+            SIZE: <div id="infoMapSize"><script>document.write(MAX_X + 'x' + MAX_Y)</script></div>           
+            <br>
+            START POINT: <div id="infoMapStartPoint"><script>document.write(STARTX + ',' + STARTY)</script></div>           
+            <br>
+            ID: <div id="infoID"></div>
+            <br>
+            DESCRIPTION: 
+            <br>
+            <textarea rows="6" cols="40" id="infoDescription"></textarea>
+            <br>            
+            <br>
+            <input name="" type="button" value="Update" onClick="alert('update');"/>           
+            </div>          
+            <div id="panel_contenido" style="height:0px; visibility:visible;  z-index:1000;  position:absolute; top:60px;">          
+              </br>          <b>MAIN MENU</b>          
+              </br>
+              </br>          
+              <tr>              
+                <!-- <td><div class="colorToolbar"> <img src="images/mapemio_colour.png" ></div></td> -->          <td>            
+                  <input type="submit" name="botonMapList" id="botonMapList" value="MapList" onClick="botonMapList()">          </td>          
+              </tr>            
+                         <td>
+                <input type="submit" name="botonMapGen" id="botonMapGen" value="MapGen" onClick="botonMapGen(); sampleParcelsList();"></td>
+                         
+              <input type="submit" name="botonOpciones" id="botonOpciones" value="Options" onClick="botonOpciones()">
+                          
+              <input type="submit" name="botonEligeMapa" id="botonEligeMapa" value="Map" onClick="botonSeleccionarMapa()">
+              </br>            
+              <input type="submit" name="cuadro2" id="botonInsertaTexto" value="Texto">
+              </br>            
+              <form id="imageform" method="post" enctype="multipart/form-data" action='ajaximage.php' onClick="setMapURLforUploadImages();">
+                <input type="file" name="photoimg" id="photoimg" size="2"/>
+                </br>              
+                <input type='hidden' name='zoom' id='zoom' />              
+                <input type="hidden" name="mapurl" id="mapurl" />    
+                <!-- su value lo cambiaremos cada vez que cambiamos URL1, incluyendo el inicio! con la función chapucera setMapURLforUploadImages()  con z le paso el valor de zoom para así ajsutar el tamaño de la imagen a insertar en el mapa -->            
+              </form>
+              </br>            <td>
+                <input type="submit" name="insertarVideo" id="insertarVideo" value="Vídeo" onClick="botonInsertarVideo()"></td>
+              </br>            <td>
+                <input type="submit" name="vaciar" id="vaciar" value="Vacía mapa!"></td>
+              </br>            <td>
+                <input type="submit" name="seleccionar" id="seleccionar" value="Seleccionar"></td>
+              </br>            <td>
+                <input type="submit" name="zoomIn" id="zoomIn" value="zoomIn"></td>
+              </br>            <td>
+                <input type="submit" name="zoomOut" id="zoomOut" value="zoomOut" onClick="CARGA_DATOS=1;"></td>
+              </br>            <td>
+                <input type="submit" name="gotoCenter" id="gotoCenter" value="gotoCenter" onClick="gotoCenter();"></td>
+              </br>            <td>
+                <input type="submit" name="hideMiniMap" id="hideMiniMap" value="hideMiniMap" onClick="hideMiniMap()"></td>
+              </br>            <td>
+                <input type="submit" name="showMiniMap" id="showMiniMap" value="showMiniMap" onClick="showMiniMap()"></td>
+              </br>            <td>
+                <input type="submit" name="regeneraZooms" id="regeneraZooms" value="regeneraZooms" onClick="regeneraZooms()"></td>
+              </br>            <td>
+                <input type="submit" name="generaMinimap" id="generaMinimap" value="generaMinimap" onClick="generaMiniMap()"></td>
+              </br>            <td>
+                <input type="submit" name="ListaOperaciones" id="ListaOperaciones" value="ListaOperaciones" onClick="alert($('#operaciones').html())"></td>
+              </br>            <td>
+                <input type="submit" name="ListaOperaciones" id="ListaOperaciones" value="ListaObjetos" onClick="alert($('#objectsLayer').html())"></td>
+              </br>            <td>
+                <input type="submit" name="SalvaOperaciones" id="SalvaOperaciones" value="SalvaOperaciones" onClick="salvaOperaciones()"></td>
+              </br>
+              </br>          
+              </tr>  
+              
+      <div id="coordenadasAsaltar" z-index:90000; overflow:visible;">
+      Jump to: 
+      <br>    
+<textarea rows="1" cols="8" id="coordenadasAsaltar" style="color:black; width:100px;" onkeyup="Textarea_Sin_Enter(event.keyCode, event.which, 'coordenadasAsaltar');"></textarea>  
+      </div> 
+              <div id="infoCoordenadasRaton" style="z-index:90000; position:absolute; color:black; -moz-user-select: none; visibility:visible;">      
+        </div>               
+              
+              
+                             
+              <div class="fb-like" data-href="http://www.mapemio.com" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false">          
+              </div>        
+            </div>            
+            <div id="panel_lista_mapas" style="background-color: #AAA; height:80%; width:90%; visibility:hidden;   position:absolute; margin-left: auto;   		    margin-right: auto;  overflow-y:scroll; z-index:1000; color:black;">        
+            </div>      
+          </div>         
+          <div id="panel_map_generation" style="height:inherit; visibility:hidden; margin:10px; z-index:1000; position:absolute; top:60px;">        
+            <table>          
+              <tr>          
+                  <input type="submit" name="botonVolver" id="botonVolver" value="<- Volver" onClick="botonVolver()">
+                  <br>                     
+                  <!-- <div class="menuVideo" id="menuMapGen" style="height:200px;"> -->                      
+                  <b>MAP GENERATION</b>
+                                  <td style="width:150px;">          
+                  <br>          
+                  <br>          
+                  <br>          
+                  <img id="muestraPlantillaSeleccionada" src="artwork/parcels/checkerboard.jpg" height="128" width="128"/>          </td>          <td>          
+
+                           
+                  <form action="" method="get"  name="formOptions">                     
+                    <center>          Name: 
+                      <input name="mapName" type="text" id="mapName" />          <br />          Tamaño:
+                      <select id="mapw" >  
+                        <option>512
+                        </option>  
+                        <option>256
+                        </option>  
+                        <option>128
+                        </option>  
+                        <option>64
+                        </option> 
+                        <option>32
+                        </option> 
+                      </select>x
+                      <select id="maph" >  
+                        <option>512
+                        </option>  
+                        <option>256
+                        </option>  
+                        <option>128
+                        </option>  
+                        <option>64
+                        </option> 
+                        <option>32
+                        </option> 
+                      </select>                     <br />          
+                      <input type="checkbox" name="parcela_borde" id="parcela_borde">Dibujar borde
+                      </input>          <br />          
+                      <input type="checkbox" name="parcela_descripcion" id="parcela_descripcion">Incluir datos parcela
+                      </input>                     <br />          
+                      <input type="checkbox" name="background_resize" id="background_resize" checked >Zoom background resize
+                      </input>                     <br />          
+                      <input name="" type="button" value="OK" onClick="generaMapa(document.getElementById('mapName').value,document.getElementById('mapw').value,document.getElementById('maph').value,document.getElementById('parcela_descripcion').checked,document.getElementById('parcela_borde').checked,document.getElementById('background_resize').checked,document.getElementById('SelectedsampleParcel').value);"/>   
+                      <!--  -->          
+                      <input name="" type="button" value="Cancel" onClick=" botonVolver()"/>          
+                    </center>
+                  </form>                     </td>        
+            </table>        
+            <br/>        PARCEL SAMPLES:         
+            </br>           
+            <div id="parcelSamplesList" style="height:200px; width:300px; overflow-y:scroll; margin:10px;  overflow-x:hidden; z-index:1000;">            
+              <!-- por ahora utilizo la variable (text imput) SelectedsampleParcel para guardar la muestra seleccionada por el usuario que se usará para la generación de mapas -->                      <td>
+                <img src="artwork/parcels/checkerboard.jpg" height="64" width="64" onClick="document.getElementById('SelectedsampleParcel').value='artwork/parcels/checkerboard.jpg';document.getElementById('muestraPlantillaSeleccionada').src='artwork/parcels/checkerboard.jpg'" style="cursor:pointer;"/></td>                     <td>
+                <img src="artwork/parcels/chinas03.jpg" height="64" width="64" onClick="document.getElementById('SelectedsampleParcel').value='artwork/parcels/chinas03.jpg';document.getElementById('muestraPlantillaSeleccionada').src='artwork/parcels/chinas03.jpg'" style="cursor:pointer;"/></td>                     <td>
+                <img src="artwork/parcels/corcho.jpg" height="64" width="64" onClick="document.getElementById('SelectedsampleParcel').value='artwork/parcels/corcho.jpg';document.getElementById('muestraPlantillaSeleccionada').src='artwork/parcels/corcho.jpg'" style="cursor:pointer;"/></td>                     <td>
+                <img src="artwork/parcels/animal_background_057.jpg" height="64" width="64" onClick="document.getElementById('SelectedsampleParcel').value='artwork/parcels/animal_background_057.jpg';document.getElementById('muestraPlantillaSeleccionada').src='artwork/parcels/animal_background_057.jpg'" style="cursor:pointer;"/></td>                     <td>
+                <img src="artwork/parcels/fondo_nubes.jpg" height="64" width="64" onClick="document.getElementById('SelectedsampleParcel').value='artwork/parcels/fondo_nubes.jpg';document.getElementById('muestraPlantillaSeleccionada').src='artwork/parcels/fondo_nubes.jpg'" style="cursor:pointer;"/></td>                     
+              <!-- Este div lo relleno dinámicamente vía AJAX con parcelSamplesList. Si no se ejecutara esa función, se listarían estas 5 parcelas de muestra -->                                 
+              <br/>        
+            </div>  
+            
+            Sample selected: <input name="SelectedsampleParcel" type="text" id="SelectedsampleParcel" value="artwork/parcels/checkerboard.jpg" size="40"/>
+                
+          </div>    
+        </div>  
+      </div> 
+      <!-- cierre panel_container -->      
+      <div id="toolbar2">  
+      </div>     
+      
+      
+      
+
+      
+      
+      <!-- <div id="controlscontainer"> -->   
+      <div id="controls" style="right:20px">      
+        <center>      
+          <div id="mapControls" >        
+            <img src="img/mapControl.png" width="80" height="80"/>              
+            <div style="position:absolute; top:0px; left:20px; height:17px; width:17px; cursor:pointer; z-index:99000;" onClick="$('#draggable').animate({'top': '+=300px'}, 'fast'); dibuja(); actualizaMiniMap();"  onDblClick="$('#draggable').animate({'top': '+=300px'}, 'fast'); dibuja(); actualizaMiniMap();"/> 
+            <img src="img/transparent1.png" width="17" height="17"/>
+          </div>              
+          <div style="position:absolute; top:38px; left:20px; height:17px; width:17px; cursor:pointer; z-index:90000;" onClick="$('#draggable').animate({'top': '-=300px'}, 'fast'); dibuja(); actualizaMiniMap();" onDblClick="$('#draggable').animate({'top': '-=300px'}, 'fast'); dibuja(); actualizaMiniMap();"/> 
+             <img src="img/transparent1.png" width="17" height="17"/>
+     </div>              
+      <div style="position:absolute;  top:18px; left:1px; height:20px; width:16px; cursor:pointer; z-index:90000;" onClick="$('#draggable').animate({'left': '+=300px'}, 'fast'); dibuja(); actualizaMiniMap();" onDblClick="$('#draggable').animate({'left': '+=300px'}, 'fast'); dibuja(); actualizaMiniMap();"/> 
+            <img src="img/transparent1.png" width="17" height="17"/>
+    </div>              
+    <div style="position:absolute;  top:18px; left:40px; height:20px; width:16px; cursor:pointer; z-index:90000;" onClick="$('#draggable').animate({'left': '-=300px'}, 'fast'); dibuja(); actualizaMiniMap();" onDblClick="$('#draggable').animate({'left': '-=300px'}, 'fast'); dibuja(); actualizaMiniMap();"/> 
+            <img src="img/transparent1.png" width="17" height="17"/>
+    </div>                     
+    </div>      
+    <div style="position:absolute; top:-30px; left:15px;"> 
+      <img src="icons/Bullet-Toggle-Minus-32.png" onClick="zoomOutOp(); " style="cursor:pointer;"/>        
+    </div>      
+    <div style="position:absolute; top:-202px; left:15px;"> 
+      <img src="icons/Bullet-Toggle-Plus-32.png" onClick="zoomInOp(); " style="cursor:pointer;"/>        
+    </div>             
+    </br>    
+    </center>    
+    <!-- </div> icons from: http://www.iconfinder.com/icondetails/53007/16/minimize_square_icon -->  
+    </div>       
+    <div id="minimap_container" style="z-index:50000">    
+      <div style="position:absolute; right:2px; top:2px; z-index:40000; cursor:pointer;">
+        <img src="icons/1361402351_CloseSquare.png" onClick="hideMiniMap();"/>    
+      </div>       
+      <div style="position:absolute; right:18px; top:2px; z-index:40000; cursor:pointer;">
+        <img id="minMaxIcon" src="icons/1361402303_MaximizeSquare.png" onClick="toggleSizeMiniMap(); actualizaMiniMap();"/>    
+      </div>       
+      <div class="minimapsubwindow3">      
+        <div class="minimapsubwindow2">        
+          <div class="minimapsubwindow">        
+          </div>      
+        </div>    
+      </div>    
+      <div id="minimap" style="position:absolute; z-index:1000;" OnDblClick="gotoCenter();">    
+          <img id="minimapImageIMG" src="img/corrector.png"/>   <!-- I use the corrector.png because if I don't put this, it fails in IE, also, can be src=""-->
+      </div>	          
+      <div id="minimapImage" style="position:absolute;">      
+        <img id="minimapImageIMG" src="" onLoad="cargaDimensionesMinimap();"/>    
+      </div>  
+    </div> 
+    
+    
+    <div id="loading_message">
+      <center><b>Loading...</b></center>
+      <img id="minimapImageIMG" src="img/loadingAnimation.gif"/> 
+    </div>
+    
+    
+    <!-- DUDOSO... ha de estar este DIV? -->     
+<script>      //  onClick="alert('hola');"
+    function reloadImg(id) {
+       var obj = document.getElementById(id);
+       var src = obj.src;
+       var pos = src.indexOf('?');
+       if (pos >= 0) {
+          src = src.substr(0, pos);
+       }
+       var date = new Date();
+       obj.src = src + '?v=' + date.getTime();
+       return false;
+    }
+  </script> 
+  </body>
+</html>
