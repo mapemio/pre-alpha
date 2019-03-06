@@ -1,0 +1,7 @@
+<FilesMatch "\.(html)$">
+Header unset Cache-Control
+Header unset Expires
+Header unset Last-Modified
+FileETag None
+Header unset Pragma
+</FilesMatch>
